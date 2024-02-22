@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\OrderHandlers\Commands\" />
+    <Folder Include="Handlers\OrderHandlers\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Markdig" />
+    <PackageReference Include="Markdown" />
+    <PackageReference Include="MassTransit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibrary\DR.Common\DR.Common.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Contexts\DR.Contexts.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Helper\DR.Helper.csproj" />
+  </ItemGroup>
+
+</Project>

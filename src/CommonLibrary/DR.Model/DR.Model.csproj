@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AllOverIt.Csv" />
+    <PackageReference Include="Newtonsoft.Json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DR.Constant\DR.Constant.csproj" />
+    <ProjectReference Include="..\DR.Database\DR.Database.csproj" />
+    <ProjectReference Include="..\DR.Helper\DR.Helper.csproj" />
+    <ProjectReference Include="..\DR.Message\DR.Message.csproj" />
+  </ItemGroup>
+
+</Project>
