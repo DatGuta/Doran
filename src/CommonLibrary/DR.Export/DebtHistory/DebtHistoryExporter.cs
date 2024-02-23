@@ -1,12 +1,8 @@
-﻿using DocumentFormat.OpenXml;
+﻿using System.Data;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using FMS.Export.Extentions;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
+using DR.Export.Extentions;
 
 namespace DR.Export.DebtHistory {
 

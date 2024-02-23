@@ -25,31 +25,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.Configuration", "src\Com
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.Database", "src\CommonLibrary\DR.Database\DR.Database.csproj", "{106FD3B5-83FC-45A5-8D60-098357AAA51C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Constant", "src\CommonLibrary\DR.Constant\DR.Constant.csproj", "{4F9CBC8A-F592-4250-9EB2-5CDC1C5C7E3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.Constant", "src\CommonLibrary\DR.Constant\DR.Constant.csproj", "{4F9CBC8A-F592-4250-9EB2-5CDC1C5C7E3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Contexts", "src\CommonLibrary\DR.Contexts\DR.Contexts.csproj", "{EC9B8ED3-CE60-4B5C-8CA0-FB06CE299E22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.Contexts", "src\CommonLibrary\DR.Contexts\DR.Contexts.csproj", "{EC9B8ED3-CE60-4B5C-8CA0-FB06CE299E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Export", "src\CommonLibrary\DR.Export\DR.Export.csproj", "{8074D205-E900-49AF-BA4F-B368FC1E65D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.Helper", "src\CommonLibrary\DR.Helper\DR.Helper.csproj", "{7107681B-40F1-4A2D-9DA9-698590A18D04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Helper", "src\CommonLibrary\DR.Helper\DR.Helper.csproj", "{7107681B-40F1-4A2D-9DA9-698590A18D04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.Message", "src\CommonLibrary\DR.Message\DR.Message.csproj", "{C567A9E5-E45A-481B-9BBA-48462A522F78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Message", "src\CommonLibrary\DR.Message\DR.Message.csproj", "{C567A9E5-E45A-481B-9BBA-48462A522F78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.Model", "src\CommonLibrary\DR.Model\DR.Model.csproj", "{E2A015CD-A5C6-4F5C-B088-D39B53F926CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Model", "src\CommonLibrary\DR.Model\DR.Model.csproj", "{E2A015CD-A5C6-4F5C-B088-D39B53F926CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.Redis", "src\CommonLibrary\DR.Redis\DR.Redis.csproj", "{CA3221B4-81AF-423D-890B-35EA44F1ADF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Redis", "src\CommonLibrary\DR.Redis\DR.Redis.csproj", "{CA3221B4-81AF-423D-890B-35EA44F1ADF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.Resource", "src\CommonLibrary\DR.Resource\DR.Resource.csproj", "{C825EE75-C988-42DB-9B1A-7B94E28C3D2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Resource", "src\CommonLibrary\DR.Resource\DR.Resource.csproj", "{C825EE75-C988-42DB-9B1A-7B94E28C3D2E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Telegram", "src\CommonLibrary\DR.Telegram\DR.Telegram.csproj", "{8C61BA4D-8F77-497C-8AD4-9605B3E7F91E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.Telegram", "src\CommonLibrary\DR.Telegram\DR.Telegram.csproj", "{8C61BA4D-8F77-497C-8AD4-9605B3E7F91E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ManageApi", "ManageApi", "{89CE0D6F-B1AD-40E6-B191-3900912F2267}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.ManageApi", "src\ManageApi\DR.ManageApi\DR.ManageApi.csproj", "{2B28992F-4883-4C33-82E3-6696021FB5B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.ManageApi", "src\ManageApi\DR.ManageApi\DR.ManageApi.csproj", "{2B28992F-4883-4C33-82E3-6696021FB5B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.ManageApi.Application", "src\ManageApi\DR.ManageApi.Application\DR.ManageApi.Application.csproj", "{01765962-B73D-447E-A2B1-FC0D7A7D347C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.ManageApi.Application", "src\ManageApi\DR.ManageApi.Application\DR.ManageApi.Application.csproj", "{01765962-B73D-447E-A2B1-FC0D7A7D347C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.ManageApi.Domain", "src\ManageApi\DR.ManageApi.Domain\DR.ManageApi.Domain.csproj", "{C06744FF-65DD-412A-8AEE-92D21A91D03A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DR.ManageApi.Domain", "src\ManageApi\DR.ManageApi.Domain\DR.ManageApi.Domain.csproj", "{C06744FF-65DD-412A-8AEE-92D21A91D03A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,10 +79,6 @@ Global
 		{EC9B8ED3-CE60-4B5C-8CA0-FB06CE299E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC9B8ED3-CE60-4B5C-8CA0-FB06CE299E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC9B8ED3-CE60-4B5C-8CA0-FB06CE299E22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8074D205-E900-49AF-BA4F-B368FC1E65D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8074D205-E900-49AF-BA4F-B368FC1E65D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8074D205-E900-49AF-BA4F-B368FC1E65D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8074D205-E900-49AF-BA4F-B368FC1E65D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7107681B-40F1-4A2D-9DA9-698590A18D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7107681B-40F1-4A2D-9DA9-698590A18D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7107681B-40F1-4A2D-9DA9-698590A18D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -133,7 +127,6 @@ Global
 		{106FD3B5-83FC-45A5-8D60-098357AAA51C} = {990EA3B3-AF14-4AAA-96B4-9FC3D09B65D6}
 		{4F9CBC8A-F592-4250-9EB2-5CDC1C5C7E3B} = {990EA3B3-AF14-4AAA-96B4-9FC3D09B65D6}
 		{EC9B8ED3-CE60-4B5C-8CA0-FB06CE299E22} = {990EA3B3-AF14-4AAA-96B4-9FC3D09B65D6}
-		{8074D205-E900-49AF-BA4F-B368FC1E65D4} = {990EA3B3-AF14-4AAA-96B4-9FC3D09B65D6}
 		{7107681B-40F1-4A2D-9DA9-698590A18D04} = {990EA3B3-AF14-4AAA-96B4-9FC3D09B65D6}
 		{C567A9E5-E45A-481B-9BBA-48462A522F78} = {990EA3B3-AF14-4AAA-96B4-9FC3D09B65D6}
 		{E2A015CD-A5C6-4F5C-B088-D39B53F926CE} = {990EA3B3-AF14-4AAA-96B4-9FC3D09B65D6}

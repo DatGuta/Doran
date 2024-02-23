@@ -8,8 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\OrderHandlers\Commands\" />
-    <Folder Include="Handlers\OrderHandlers\Queries\" />
+    <Compile Remove="Handlers\OrderHandlers\**" />
+    <EmbeddedResource Remove="Handlers\OrderHandlers\**" />
+    <None Remove="Handlers\OrderHandlers\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,10 @@
     <ProjectReference Include="..\..\CommonLibrary\DR.Common\DR.Common.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Contexts\DR.Contexts.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Helper\DR.Helper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\Temp\Commands\" />
   </ItemGroup>
 
 </Project>

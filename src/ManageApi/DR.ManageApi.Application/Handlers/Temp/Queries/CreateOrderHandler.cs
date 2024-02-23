@@ -7,13 +7,9 @@ using DR.Contexts.AuditContexts;
 using DR.Contexts.NormalContexts;
 using DR.Database.Models;
 using DR.Helper;
-using DR.ManageApi.Application.Handlers;
-using DR.ManageApi.Domain.Actions.AutoGenerate;
-using DR.ManageApi.Domain.Services.Interfaces;
-using DR.Message;
 using MassTransit;
 
-namespace TuanVu.Handlers.OrderHandlers;
+namespace DR.ManageApi.Application.Handlers.Temp.Queries;
 
 public class CreateOrderCommand : ModelRequest<OrderDto, CreateOrderRes> {
     public ESource Source { get; set; } = ESource.WEB;
@@ -40,21 +36,21 @@ internal class CreateOrderHandler(IServiceProvider serviceProvider) : BaseHandle
 
         Warehouse? warehouse = null;
         if (!string.IsNullOrEmpty(model.Warehouse?.Id)) {
-            warehouse = await this.db.Warehouses.AsNoTracking()
+            warehouse = await db.Warehouses.AsNoTracking()
                 .Where(o => o.MerchantId == request.MerchantId && o.Id == model.Warehouse.Id! && !o.IsDelete && o.IsActive)
                 .FirstOrDefaultAsync(cancellationToken);
             ManagedException.ThrowIfNull(warehouse, Messages.Order.Create.Warehouse_NotFound);
         }
 
         var order = await Locker.LockByKey($"Merchant:{request.MerchantId}:Order",
-            () => this.CreateOrder(request.MerchantId, request.UserId, request.Source, model, warehouse, cancellationToken));
+            () => CreateOrder(request.MerchantId, request.UserId, request.Source, model, warehouse, cancellationToken));
 
         if (order == null) return new CreateOrderRes();
 
         if (!string.IsNullOrWhiteSpace(order.WarehouseId)) {
-            var allowAutoExportOrder = await this.settingService.GetValue(order.MerchantId, ESetting.AutoExportOrder, false, cancellationToken);
+            var allowAutoExportOrder = await settingService.GetValue(order.MerchantId, ESetting.AutoExportOrder, false, cancellationToken);
             if (allowAutoExportOrder) {
-                await this.mediator.Send(new ExportOrderQuery {
+                await mediator.Send(new ExportOrderQuery {
                     MerchantId = request.MerchantId,
                     UserId = request.UserId,
                     OrderId = order.Id,
@@ -67,7 +63,7 @@ internal class CreateOrderHandler(IServiceProvider serviceProvider) : BaseHandle
             }
         }
 
-        await this.customerTrackingService.ProcessOrder(order.Id, cancellationToken);
+        await customerTrackingService.ProcessOrder(order.Id, cancellationToken);
 
         return new CreateOrderRes { OrderId = order.Id, OrderNo = order.OrderNo };
     }
@@ -82,7 +78,7 @@ internal class CreateOrderHandler(IServiceProvider serviceProvider) : BaseHandle
 
         var productIds = model.Items?.Where(o => !string.IsNullOrWhiteSpace(o.Product?.Id))
                 .Select(o => o.Product!.Id!).Distinct().ToList() ?? new List<string>();
-        var products = await this.db.Products.AsNoTracking()
+        var products = await db.Products.AsNoTracking()
             .Where(o => o.MerchantId == merchantId && productIds.Contains(o.Id))
             .ToDictionaryAsync(k => k.Id, v => new { v.Code, v.Name, v.DisplayName }, cancellationToken);
 
@@ -92,7 +88,7 @@ internal class CreateOrderHandler(IServiceProvider serviceProvider) : BaseHandle
             StoreId = model.Store!.Id!,
             WarehouseId = warehouse?.Id,
             Type = Constants.OrderTypeMap.GetValueOrDefault(warehouse?.Type ?? EWarehouse.Normal, EOrder.Normal),
-            OrderNo = await this.autoGenerationService.GenerateCode(merchantId, ESetting.AutoGenerateOrderNo, EAutoGenerator.OrderNo, cancellationToken),
+            OrderNo = await autoGenerationService.GenerateCode(merchantId, ESetting.AutoGenerateOrderNo, EAutoGenerator.OrderNo, cancellationToken),
             Status = orderType,
             CustomerId = !string.IsNullOrEmpty(model.Customer?.Id) ? model.Customer.Id : default,
             DiscountId = model.Discount?.Id,
@@ -142,14 +138,14 @@ internal class CreateOrderHandler(IServiceProvider serviceProvider) : BaseHandle
             OrderCustomers = GetDelivery(model.Delivery),
         };
 
-        await this.db.Orders.AddAsync(order, cancellationToken);
-        await this.db.SaveChangesAsync(cancellationToken);
+        await db.Orders.AddAsync(order, cancellationToken);
+        await db.SaveChangesAsync(cancellationToken);
 
-        await this.orderService.Recalculate(order.Id, cancellationToken);
-        await this.mediator.Publish(new OrderCAuditContext(merchantId, userId, order, source), cancellationToken);
+        await orderService.Recalculate(order.Id, cancellationToken);
+        await mediator.Publish(new OrderCAuditContext(merchantId, userId, order, source), cancellationToken);
 
         if (!string.IsNullOrWhiteSpace(order.CustomerId)) {
-            await this.bus.Publish(new CustomerLastPurchaseContext(merchantId, order.CustomerId), cancellationToken);
+            await bus.Publish(new CustomerLastPurchaseContext(merchantId, order.CustomerId), cancellationToken);
         }
 
         return order;
