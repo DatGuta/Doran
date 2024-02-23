@@ -22,13 +22,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\CommonLibrary\DR.Common\DR.Common.csproj" />
-    <ProjectReference Include="..\..\CommonLibrary\DR.Contexts\DR.Contexts.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Helper\DR.Helper.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Model\DR.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Handlers\Temp\Commands\" />
+    <Folder Include="Jobs\" />
   </ItemGroup>
 
 </Project>

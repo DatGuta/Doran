@@ -18,7 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\DR.Common\DR.Common.csproj" />
     <ProjectReference Include="..\DR.Configuration\DR.Configuration.csproj" />
-    <ProjectReference Include="..\DR.Contexts\DR.Contexts.csproj" />
   </ItemGroup>
 
 </Project>

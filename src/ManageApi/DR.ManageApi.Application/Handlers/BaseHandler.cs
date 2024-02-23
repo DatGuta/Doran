@@ -1,16 +1,15 @@
-﻿using DR.Database;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace DR.ManageApi.Application.Handlers;
 
 public abstract class BaseHandler {
     protected readonly IConfiguration configuration;
-    protected readonly DrContext db;
+    // protected readonly DrContext db;
     protected readonly string? url;
 
     protected BaseHandler(IServiceProvider serviceProvider) {
         configuration = serviceProvider.GetRequiredService<IConfiguration>();
-        db = serviceProvider.GetRequiredService<DrContext>();
+        //    db = serviceProvider.GetRequiredService<DrContext>();
         url = configuration["ImageUrl"];
     }
 }

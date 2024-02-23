@@ -1,11 +1,10 @@
-﻿using DR.Database;
-using MassTransit;
+﻿using MassTransit;
 using Microsoft.Extensions.Configuration;
 
 namespace DR.ManageApi.Application.Consumers;
 
 public abstract class BaseRabbitMqConsumer(IServiceProvider serviceProvider) {
-    protected readonly DrContext db = serviceProvider.GetRequiredService<DrContext>();
+    //  protected readonly DrContext db = serviceProvider.GetRequiredService<DrContext>();
     protected readonly IBus bus = serviceProvider.GetRequiredService<IBusControl>();
     protected readonly IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
 }

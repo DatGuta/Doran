@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\CommonLibrary\DR.Common\DR.Common.csproj" />
-    <ProjectReference Include="..\..\CommonLibrary\DR.Contexts\DR.Contexts.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Database\DR.Database.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Helper\DR.Helper.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Model\DR.Model.csproj" />

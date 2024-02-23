@@ -1,10 +1,8 @@
 ﻿using DR.Configuration;
 using DR.ManageApi.Application.Consumers;
 using DR.ManageApi.Application.Handlers;
-using DR.ManageApi.Application.Jobs;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
-using Quartz;
 
 namespace DR.ManageApi.Application;
 
@@ -16,8 +14,7 @@ public static class DependencyInjection {
     }
 
     public static IServiceCollection AddJobs(this IServiceCollection services) {
-        services.AddQuartz(q => q.ScheduleJob<RetryJob>(trigger =>
-                trigger.WithCronSchedule("0 0/30 * ? * * *", a => a.InTimeZone(TimeZoneInfo.Local)).StartNow()));
+
 
         return services;
     }

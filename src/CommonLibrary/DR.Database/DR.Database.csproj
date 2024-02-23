@@ -16,4 +16,8 @@
     <ProjectReference Include="..\DR.Constant\DR.Constant.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

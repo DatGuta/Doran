@@ -1,6 +1,4 @@
 ﻿using DR.Common;
-using DR.Contexts.WarningContexts;
-using DR.Telegram;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
@@ -58,7 +56,7 @@ internal class UpdateHandler : IUpdateHandler {
                 text += $"{Environment.NewLine} Recalculated by {from} at {now}";
             }
 
-            await this.ProcessWarningStock(itemId, isDelete, cancellationToken);
+            ProcessWarningStock(itemId, isDelete, cancellationToken);
         } else if (isSkip) {
             text += $"{Environment.NewLine} Skiped by {from} at {now}";
         }
@@ -71,10 +69,9 @@ internal class UpdateHandler : IUpdateHandler {
             cancellationToken: cancellationToken);
     }
 
-    private async Task ProcessWarningStock(string itemId, bool isDelete, CancellationToken cancellationToken) {
-        using (var scope = Container.Instance.CreateScope()) {
-            IBus bus = scope.ServiceProvider.GetRequiredService<IBusControl>();
-            await bus.Publish(new ProcessWarningStockContext(itemId, isDelete), cancellationToken);
-        }
+    private static void ProcessWarningStock(string itemId, bool isDelete, CancellationToken cancellationToken) {
+        using var scope = Container.Instance.CreateScope();
+        IBus bus = scope.ServiceProvider.GetRequiredService<IBusControl>();
+        //        await bus.Publish(new ProcessWarningStockContext(itemId, isDelete), cancellationToken);
     }
 }
