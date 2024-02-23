@@ -10,7 +10,7 @@ public class UnitResource {
         string filename = Path.Combine("Resources", "administrative_unit.json");
         if (File.Exists(filename)) {
             try {
-                items = JsonConvert.DeserializeObject<List<AuStorage>>(File.ReadAllText(filename)) ?? new List<AuStorage>();
+                items = JsonConvert.DeserializeObject<List<AuStorage>>(File.ReadAllText(filename)) ?? [];
             } finally {
                 items ??= new List<AuStorage>();
             }
@@ -18,26 +18,22 @@ public class UnitResource {
     }
 
     public List<Unit> List(string? lv1Code, string? lv2Code) {
-        if (string.IsNullOrWhiteSpace(lv1Code)) {
-            return items.Where(o => !string.IsNullOrWhiteSpace(o.Lv1) && string.IsNullOrWhiteSpace(o.Lv2) && string.IsNullOrWhiteSpace(o.Lv3))
+        return string.IsNullOrWhiteSpace(lv1Code)
+            ? items.Where(o => !string.IsNullOrWhiteSpace(o.Lv1) && string.IsNullOrWhiteSpace(o.Lv2) && string.IsNullOrWhiteSpace(o.Lv3))
                 .Select(o => new Unit { Code = o.Lv1, Name = o.Name })
-                .ToList();
-        }
-
-        if (string.IsNullOrWhiteSpace(lv2Code)) {
-            return items.Where(o => o.Lv1 == lv1Code && !string.IsNullOrWhiteSpace(o.Lv2) && string.IsNullOrWhiteSpace(o.Lv3))
+                .ToList()
+            : string.IsNullOrWhiteSpace(lv2Code)
+            ? items.Where(o => o.Lv1 == lv1Code && !string.IsNullOrWhiteSpace(o.Lv2) && string.IsNullOrWhiteSpace(o.Lv3))
                 .Select(o => new Unit { Code = o.Lv2!, Name = o.Name })
+                .ToList()
+            : items.Where(o => o.Lv1 == lv1Code && o.Lv2 == lv2Code && !string.IsNullOrWhiteSpace(o.Lv3))
+                .Select(o => new Unit { Code = o.Lv3!, Name = o.Name })
                 .ToList();
-        }
-
-        return items.Where(o => o.Lv1 == lv1Code && o.Lv2 == lv2Code && !string.IsNullOrWhiteSpace(o.Lv3))
-            .Select(o => new Unit { Code = o.Lv3!, Name = o.Name })
-            .ToList();
     }
 
     public Dictionary<string, Unit> GetByCode(params string?[] codes) {
         codes = codes.Where(code => !string.IsNullOrWhiteSpace(code)).ToArray();
-        if (codes.Length == 0) return new Dictionary<string, Unit>();
+        if (codes.Length == 0) return [];
 
         var lv1Items = items.Where(o => codes.Contains(o.Lv1) && string.IsNullOrWhiteSpace(o.Lv2) && string.IsNullOrWhiteSpace(o.Lv3))
             .Select(o => new Unit {
@@ -61,12 +57,11 @@ public class UnitResource {
     }
 
     public Unit? GetByCode(string? code) {
-        if (string.IsNullOrWhiteSpace(code))
-            return null;
-
-        return items.Where(o => o.Lv1 == code || o.Lv2 == code || o.Lv3 == code)
-            .Select(o => new Unit { Code = code, Name = o.Name })
-            .FirstOrDefault();
+        return string.IsNullOrWhiteSpace(code)
+            ? null
+            : items.Where(o => o.Lv1 == code || o.Lv2 == code || o.Lv3 == code)
+                .Select(o => new Unit { Code = code, Name = o.Name })
+                .FirstOrDefault();
     }
 
     public List<AddressMap> GetByName(params string?[] names) {

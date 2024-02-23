@@ -6,7 +6,7 @@ using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Quartz;
 
-namespace FMS.ManageApi.Application;
+namespace DR.ManageApi.Application;
 
 public static class DependencyInjection {
 
@@ -16,15 +16,8 @@ public static class DependencyInjection {
     }
 
     public static IServiceCollection AddJobs(this IServiceCollection services) {
-        services.AddQuartz(q => {
-            q.ScheduleJob<RetryJob>(trigger =>
-                trigger.WithCronSchedule("0 0/30 * ? * * *", a => a.InTimeZone(TimeZoneInfo.Local)).StartNow());
-            q.ScheduleJob<CheckStockErrorJob>(trigger =>
-                trigger.WithCronSchedule("0 0/30 * ? * * *", a => a.InTimeZone(TimeZoneInfo.Local)).StartNow());
-
-            q.ScheduleJob<CalculatingSaleOrderJob>(trigger =>
-                trigger.WithCronSchedule("0 0 0 ? * * *", a => a.InTimeZone(TimeZoneInfo.Local)));
-        });
+        services.AddQuartz(q => q.ScheduleJob<RetryJob>(trigger =>
+                trigger.WithCronSchedule("0 0/30 * ? * * *", a => a.InTimeZone(TimeZoneInfo.Local)).StartNow()));
 
         return services;
     }
@@ -43,9 +36,7 @@ public static class DependencyInjection {
                         auth.Password(rabbitMqConfig.Password);
                     });
                     cfg.ConfigureEndpoints(context);
-                    cfg.ReceiveEndpoint(e => {
-                        e.ConfigureConsumers(context);
-                    });
+                    cfg.ReceiveEndpoint(e => e.ConfigureConsumers(context));
                 });
             });
         }

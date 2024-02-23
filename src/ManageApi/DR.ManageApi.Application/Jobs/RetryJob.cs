@@ -5,7 +5,7 @@ using Quartz;
 namespace DR.ManageApi.Application.Jobs;
 
 public class RetryJob(IServiceProvider serviceProvider) : IJob {
-    private readonly FmsContext db = serviceProvider.GetRequiredService<FmsContext>();
+    private readonly DrContext db = serviceProvider.GetRequiredService<DrContext>();
     private readonly IBusControl bus = serviceProvider.GetRequiredService<IBusControl>();
 
     public async Task Execute(IJobExecutionContext context) {

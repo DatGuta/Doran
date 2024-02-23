@@ -3,7 +3,7 @@ using DR.Constant.Enums;
 using DR.Contexts.NormalContexts;
 using DR.Database.Models;
 
-namespace FMS.ManageApi.Application.Consumers.NormalConsumers;
+namespace DR.ManageApi.Application.Consumers.NormalConsumers;
 
 internal class UpdateProductTrackingConsumer(IServiceProvider serviceProvider)
     : BaseRabbitMqConsumer<UpdateProductTrackingContext>(serviceProvider) {

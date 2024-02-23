@@ -2,7 +2,7 @@
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 
-namespace FMS.ManageApi.Application.Consumers;
+namespace DR.ManageApi.Application.Consumers;
 
 public abstract class BaseRabbitMqConsumer(IServiceProvider serviceProvider) {
     protected readonly DrContext db = serviceProvider.GetRequiredService<DrContext>();

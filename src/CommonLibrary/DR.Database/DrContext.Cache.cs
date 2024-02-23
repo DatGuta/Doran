@@ -1,5 +1,5 @@
-﻿using DR.Database.Models;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
+using DR.Database.Models;
 
 namespace DR.Database {
     public partial class DrContext {

@@ -14,15 +14,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Markdig" />
-    <PackageReference Include="Markdown" />
-    <PackageReference Include="MassTransit" />
+    <PackageReference Include="MarkdownBuilder" />
+    <PackageReference Include="MassTransit.RabbitMQ" />
+    <PackageReference Include="Quartz.Extensions.DependencyInjection" />
+    <PackageReference Include="System.Linq.Dynamic.Core" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\CommonLibrary\DR.Common\DR.Common.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Contexts\DR.Contexts.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Helper\DR.Helper.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Model\DR.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>

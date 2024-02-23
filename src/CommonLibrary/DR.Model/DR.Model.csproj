@@ -18,8 +18,4 @@
     <ProjectReference Include="..\DR.Message\DR.Message.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dto\" />
-  </ItemGroup>
-
 </Project>

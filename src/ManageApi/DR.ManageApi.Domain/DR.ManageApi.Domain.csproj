@@ -20,4 +20,9 @@
     <ProjectReference Include="..\..\CommonLibrary\DR.Redis\DR.Redis.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Implements\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>

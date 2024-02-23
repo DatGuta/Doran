@@ -44,16 +44,14 @@ public static class FtpHelper {
         using var client = new AsyncFtpClient(config.Host, config.Username, config.Password);
         await client.AutoConnect();
         var existed = await client.FileExists(path);
-        if (!existed) return Array.Empty<byte>();
-        return await client.DownloadBytes(path, 0);
+        return !existed ? [] : await client.DownloadBytes(path, 0);
     }
 
     private static async Task<FtpStatus> DownloadFile(string localPath, string path, FtpConfig config) {
         using var client = new AsyncFtpClient(config.Host, config.Username, config.Password);
         await client.AutoConnect();
         var existed = await client.FileExists(path);
-        if (!existed) return FtpStatus.Failed;
-        return await client.DownloadFile(localPath, path, FtpLocalExists.Overwrite);
+        return !existed ? FtpStatus.Failed : await client.DownloadFile(localPath, path, FtpLocalExists.Overwrite);
     }
 
     private static async Task DeleteFile(string filename, FtpConfig config) {
