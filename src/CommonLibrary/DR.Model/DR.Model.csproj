@@ -29,6 +29,7 @@
     <ProjectReference Include="..\DR.Database\DR.Database.csproj" />
     <ProjectReference Include="..\DR.Helper\DR.Helper.csproj" />
     <ProjectReference Include="..\DR.Message\DR.Message.csproj" />
+    <ProjectReference Include="..\DR.Resource\DR.Resource.csproj" />
   </ItemGroup>
 
 </Project>

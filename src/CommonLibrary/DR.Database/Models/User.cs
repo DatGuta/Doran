@@ -12,8 +12,7 @@ public partial class User {
     [Description("Tên đăng nhập")]
     public string Username { get; set; } = null!;
 
-    public byte[] PasswordHash { get; set; } = new byte[0];
-    public byte[] PasswordSalt { get; set; } = new byte[0];
+    public string Password { get; set; } = null!;
     public string PinCode { get; set; } = null!;
 
     [Description("Tên người dùng")]
@@ -46,6 +45,8 @@ public partial class User {
     public long LastSession { get; set; }
 
     public virtual Role? Role { get; set; }
+
+    public virtual ICollection<UserAudit>? UserAudits { get; set; }
 }
 internal class UserConfig : IEntityTypeConfiguration<User> {
 
@@ -57,7 +58,7 @@ internal class UserConfig : IEntityTypeConfiguration<User> {
         builder.Property(o => o.RoleId).HasMaxLength(32);
 
         builder.Property(o => o.Username).IsRequired();
-        builder.Property(o => o.PasswordHash).IsRequired();
+        builder.Property(o => o.Password).IsRequired();
         builder.Property(o => o.PinCode).IsRequired();
 
         builder.Property(o => o.Name).HasMaxLength(255).IsRequired();
@@ -74,6 +75,7 @@ internal class UserConfig : IEntityTypeConfiguration<User> {
 
         // fk
         builder.HasOne(o => o.Role).WithMany(o => o.Users).HasForeignKey(o => o.RoleId);
+        builder.HasMany(o => o.UserAudits).WithOne(o => o.User).HasForeignKey(o => o.UserId);
     }
 }
 

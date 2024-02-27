@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DR.Common\DR.Common.csproj" />
     <ProjectReference Include="..\DR.Constant\DR.Constant.csproj" />
   </ItemGroup>
 

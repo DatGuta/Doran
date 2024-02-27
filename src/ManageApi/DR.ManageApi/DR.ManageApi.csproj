@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" />
     <PackageReference Include="Optivem.Framework.Infrastructure.FluentValidation" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
@@ -15,7 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibrary\DR.Attributes\DR.Attributes.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Common\DR.Common.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Database\DR.Database.csproj" />
+    <ProjectReference Include="..\DR.ManageApi.Application\DR.ManageApi.Application.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,18 +16,24 @@
   <ItemGroup>
     <PackageReference Include="MarkdownBuilder" />
     <PackageReference Include="MassTransit.RabbitMQ" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
     <PackageReference Include="Quartz.Extensions.DependencyInjection" />
     <PackageReference Include="System.Linq.Dynamic.Core" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibrary\CommonService\CommonService.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Common\DR.Common.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Contexts\DR.Contexts.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Helper\DR.Helper.csproj" />
     <ProjectReference Include="..\..\CommonLibrary\DR.Model\DR.Model.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Redis\DR.Redis.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Resource\DR.Resource.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Handlers\Temp\Commands\" />
+    <Folder Include="Handlers\Temp\Queries\" />
     <Folder Include="Jobs\" />
   </ItemGroup>
 
