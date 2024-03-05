@@ -1,10 +1,10 @@
-﻿using DR.Resource;
+﻿using System.Diagnostics.CodeAnalysis;
+using DR.Resource;
 using Newtonsoft.Json;
-using System.Diagnostics.CodeAnalysis;
 
-namespace DR.Models {
+namespace DR.Models.Dto {
     public class UserDto {
-        public string? Id { get; set; }
+        public Guid? Id { get; set; }
         public string? Username { get; set; }
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
@@ -27,12 +27,12 @@ namespace DR.Models {
 
         [return: NotNullIfNotNull(nameof(entity))]
         public static UserDto? FromEntity(Database.Models.User? entity,
-            UnitRes? unitRes,
+            UnitResource? unitRes,
             Database.Models.Role? roleEntity = null) {
             if (entity == null) return default;
             entity.Role ??= roleEntity;
 
-            var au = unitRes?.GetByCode(entity.Province, entity.District, entity.Commune) ?? new();
+            var au = unitRes?.GetByCode(entity.Province, entity.District, entity.Commune) ?? [];
 
             return new UserDto {
                 Id = entity.Id,
@@ -43,7 +43,6 @@ namespace DR.Models {
                 District = !string.IsNullOrWhiteSpace(entity.District) && au.TryGetValue(entity.District, out var district) ? district : default,
                 Commune = !string.IsNullOrWhiteSpace(entity.Commune) && au.TryGetValue(entity.Commune, out var commune) ? commune : default,
                 Address = entity.Address,
-                IsActive = entity.IsActive,
                 IsAdmin = entity.IsAdmin,
                 Role = RoleDto.FromEntity(entity.Role),
             };

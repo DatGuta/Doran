@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DependencyInjection.cs" />
+    <Compile Remove="GlobalUsings.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\AuthHandlers\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibrary\DR.Database\DR.Database.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Helper\DR.Helper.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Model\DR.Models.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Redis\DR.Redis.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Telegram\DR.Telegram.csproj" />
+    <ProjectReference Include="..\DR.Domain\DR.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

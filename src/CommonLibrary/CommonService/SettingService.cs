@@ -16,10 +16,10 @@ namespace TuanVu.CommonServices {
     }
 
     public class SettingService : ISettingService {
-        private readonly DrDbContext db;
+        private readonly DrContext db;
 
         public SettingService(IServiceProvider serviceProvider) {
-            this.db = serviceProvider.GetRequiredService<DrDbContext>();
+            this.db = serviceProvider.GetRequiredService<DrContext>();
         }
 
         public async Task<JToken> GetValue(ESetting setting, Guid merchantId, CancellationToken cancellationToken = default) {

@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 
 namespace DR.Attributes {
-    public class DRAuthorizeAttribute : AuthorizeAttribute {
+    public class DrAuthorizeAttribute : AuthorizeAttribute {
 
-        public DRAuthorizeAttribute(params string[] claims) {
-            if (claims != null && claims.Any()) {
+        public DrAuthorizeAttribute(params string[] claims) {
+            if (claims != null && claims.Length != 0) {
                 base.Roles = string.Join(',', claims);
             }
         }

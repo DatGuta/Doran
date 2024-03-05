@@ -1,4 +1,4 @@
-﻿namespace DR.Redis;
+﻿namespace DR.Redis.Interfaces;
 
 public interface IRedisService {
 

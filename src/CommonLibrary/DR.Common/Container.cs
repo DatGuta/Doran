@@ -11,15 +11,21 @@ public sealed class Container {
     }
 
     private IServiceProvider? serviceProvider;
+    private int access = 0;
 
-    public void SetServiceProvider(IServiceProvider serviceProvider) {
+    public Container SetServiceProvider(IServiceProvider serviceProvider) {
         this.serviceProvider = serviceProvider;
+        return this;
+    }
+
+    public Container SetAccess(int access) {
+        this.access = access;
+        return this;
     }
 
     public IServiceScope CreateScope() {
-        if (this.serviceProvider == null)
-            throw new MissingMemberException(nameof(serviceProvider));
-
-        return this.serviceProvider.CreateScope();
+        return this.serviceProvider?.CreateScope() ?? throw new MissingMemberException(nameof(serviceProvider));
     }
+
+    public int GetAccess() => this.access;
 }

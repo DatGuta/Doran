@@ -1,4 +1,4 @@
-﻿namespace DR.Telegram;
+﻿namespace DR.Telegram.Interfaces;
 public interface ITelegramService {
 
     Task SendMessage(ETelegramBot bot, long chatId, string text, Dictionary<string, Callback>? callback, CancellationToken cancellationToken = default);

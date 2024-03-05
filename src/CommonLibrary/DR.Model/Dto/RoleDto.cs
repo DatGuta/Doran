@@ -1,10 +1,9 @@
-﻿using DR.Models;
+﻿using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
-using System.Diagnostics.CodeAnalysis;
 
-namespace DR.Models {
+namespace DR.Models.Dto {
     public class RoleDto {
-        public string? Id { get; set; }
+        public Guid? Id { get; set; }
         public string? Code { get; set; }
         public string Name { get; set; } = string.Empty;
 
@@ -30,8 +29,8 @@ namespace DR.Models {
         }
 
         private static List<PermissionDto> IncludePermissions(List<PermissionDto> permissions, Database.Models.Role role, bool isEnable = true) {
-            if (role.RolePermissions == null || !role.RolePermissions.Any()) return permissions;
-            if (!permissions.Any()) return permissions;
+            if (role.RolePermissions == null || role.RolePermissions.Count == 0) return permissions;
+            if (permissions.Count == 0) return permissions;
 
             foreach (var item in permissions) {
                 var rolePermission = role.RolePermissions.FirstOrDefault(o => o.PermissionId == item.Id);

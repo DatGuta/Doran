@@ -3,11 +3,10 @@
 namespace DR.Database.Models;
 public partial class User {
 
-    public string Id { get; set; } = null!;
-    public Guid? MerchantId { get; set; } = null!;
+    public Guid Id { get; set; }
 
     [Description("Phân quyền")]
-    public string? RoleId { get; set; }
+    public Guid? RoleId { get; set; }
 
     [Description("Tên đăng nhập")]
     public string Username { get; set; } = null!;
@@ -35,9 +34,6 @@ public partial class User {
     [Description("Địa chỉ")]
     public string? Address { get; set; }
 
-    [Description("Trạng thái")]
-    public bool IsActive { get; set; }
-
     public bool IsAdmin { get; set; }
     public bool IsSystem { get; set; }
     public bool IsDelete { get; set; }
@@ -45,8 +41,6 @@ public partial class User {
     public long LastSession { get; set; }
 
     public virtual Role? Role { get; set; }
-
-    public virtual ICollection<UserAudit>? UserAudits { get; set; }
 }
 internal class UserConfig : IEntityTypeConfiguration<User> {
 
@@ -54,8 +48,6 @@ internal class UserConfig : IEntityTypeConfiguration<User> {
         builder.ToTable(nameof(User));
 
         builder.HasKey(o => o.Id);
-        builder.Property(o => o.MerchantId).IsRequired();
-        builder.Property(o => o.RoleId).HasMaxLength(32);
 
         builder.Property(o => o.Username).IsRequired();
         builder.Property(o => o.Password).IsRequired();
@@ -69,13 +61,8 @@ internal class UserConfig : IEntityTypeConfiguration<User> {
         builder.Property(o => o.Commune).HasMaxLength(20);
         builder.Property(o => o.Address).HasMaxLength(255);
 
-        // index
-        builder.HasIndex(o => o.MerchantId);
-        builder.HasIndex(o => new { o.MerchantId, o.Username }).IsUnique();
-
         // fk
         builder.HasOne(o => o.Role).WithMany(o => o.Users).HasForeignKey(o => o.RoleId);
-        builder.HasMany(o => o.UserAudits).WithOne(o => o.User).HasForeignKey(o => o.UserId);
     }
 }
 

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 
 namespace DR.Constant.Enums;
-
 public enum EDateTimePeriod {
 
     [Description("Ngày")]

@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\DR.Application\DR.Application.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Attributes\DR.Attributes.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Common\DR.Common.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Database\DR.Database.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Model\DR.Models.csproj" />
+    <ProjectReference Include="..\..\CommonLibrary\DR.Resource\DR.Resource.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Resources\administrative_unit.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

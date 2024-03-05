@@ -1,16 +1,16 @@
 ﻿using Newtonsoft.Json;
 
-namespace DR.Models {
+namespace DR.Models.Dto {
     public class PermissionDto {
-        public string Id { get; set; } = null!;
+        public Guid Id { get; set; }
         public string Name { get; set; } = null!;
         public bool IsEnable { get; set; }
         public int OrderIndex { get; set; }
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
-        public List<PermissionDto> Items { get; set; } = new();
+        public List<PermissionDto> Items { get; set; } = [];
 
-        public static List<PermissionDto> FromEntities(List<Database.Models.Permission> permissions, string? parentId = null) {
+        public static List<PermissionDto> FromEntities(List<Database.Models.Permission> permissions, Guid? parentId = null) {
             var permissionDtos = permissions.Where(o => o.IsActive && o.ParentId == parentId).Select(o => new PermissionDto {
                 Id = o.Id,
                 Name = o.DisplayName,

@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace DR.Database;
+namespace DR.Database.Extensions;
 
 public static class LinqExtension {
 

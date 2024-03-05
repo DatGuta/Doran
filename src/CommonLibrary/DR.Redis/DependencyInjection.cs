@@ -1,5 +1,6 @@
 ﻿using DR.Configuration;
 using DR.Redis.Implements;
+using DR.Redis.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;

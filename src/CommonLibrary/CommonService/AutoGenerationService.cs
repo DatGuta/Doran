@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using DR.Constant.Enums;
 using DR.Database;
-using DR.Database.ExtendModels;
 using DR.Operators.AutoGenerate;
 using Microsoft.Extensions.DependencyInjection;
 using TuanVu.CommonServices;
@@ -16,12 +15,12 @@ namespace DR.CommonServices {
     }
 
     public class AutoGenerationService : IAutoGenerationService {
-        private readonly DrDbContext db;
+        private readonly DrContext db;
         private readonly ISettingService settingService;
         private readonly Random random;
 
         public AutoGenerationService(IServiceProvider serviceProvider) {
-            this.db = serviceProvider.GetRequiredService<DrDbContext>();
+            this.db = serviceProvider.GetRequiredService<DrContext>();
             this.settingService = serviceProvider.GetRequiredService<ISettingService>();
             this.random = new Random();
         }
